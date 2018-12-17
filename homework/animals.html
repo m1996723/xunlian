@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../../js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			let i=0;
+		</script>
+	</head>
+	<body ng-app>
+		<div id="box"></div>
+	</body>
+	<script src="../../jq/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		let box=document.getElementById("box");
+		let res='';
+		$.ajax({
+			type:"get",
+			url:"http://localhost:8080/reptile",
+			async:true,
+			success(res0){
+				res0=JSON.parse(res0)
+				console.log(res0[0])
+				let str=`<ul ng-init='data=${res0[0].imgSrc}'><li>{{data}}</li></ul>`;
+				box.innerHTML=str
+				
+			}
+		});
+	</script>
+</html>
